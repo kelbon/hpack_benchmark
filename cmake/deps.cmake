@@ -19,15 +19,12 @@ CPMAddPackage(
           "BENCHMARK_INSTALL_DOCS OFF"
 )
 
-# library under test. For benchmarking local changes:
-#   cmake . --preset=release -DCPM_HPACK_SOURCE=/path/to/hpack
 CPMAddPackage(
   NAME HPACK
   GITHUB_REPOSITORY kelbon/hpack
-  GIT_TAG fixx
+  GIT_TAG v1.2.0
 )
 
-# reference implementation (nghttp2_hd_* API), only library
 CPMAddPackage(
   NAME NGHTTP2
   GITHUB_REPOSITORY nghttp2/nghttp2
