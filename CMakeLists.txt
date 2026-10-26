@@ -11,10 +11,9 @@ target_include_directories(hpack_benchmarklib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR
 
 target_link_libraries(hpack_benchmarklib PUBLIC
     ${CMAKE_THREAD_LIBS_INIT}
-    anyanylib
-    kelcorolib
-    zallib
     benchmark::benchmark
+    hpacklib
+    nghttp2::nghttp2
 )
 
 add_executable(run_benchmark benchmark.cpp)

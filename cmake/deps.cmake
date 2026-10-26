@@ -9,27 +9,6 @@ CPMAddPackage(
 
 include(${CCOZY_SOURCE_DIR}/ccozy_tools.cmake)
 
-# C++20 coroutines (kelcorolib)
-CPMAddPackage(
-  NAME KELCORO
-  GITHUB_REPOSITORY kelbon/kelcoro
-  GIT_TAG v1.4.3
-)
-
-# move_only_function, function ref etc (anyanylib)
-CPMAddPackage(
-  NAME ANYANY
-  GITHUB_REPOSITORY kelbon/AnyAny
-  GIT_TAG v1.2.1
-)
-
-# on_scope_exit / on_scope_failure (zallib)
-CPMAddPackage(
-  NAME LOGIC_GUARDS
-  GITHUB_REPOSITORY kelbon/logic_guards
-  GIT_TAG        v1.0.0
-)
-
 CPMAddPackage(
   NAME BENCHMARK
   GITHUB_REPOSITORY google/benchmark
@@ -38,6 +17,26 @@ CPMAddPackage(
           "BENCHMARK_ENABLE_WERROR OFF"
           "BENCHMARK_FORCE_WERROR OFF"
           "BENCHMARK_INSTALL_DOCS OFF"
+)
+
+# library under test. For benchmarking local changes:
+#   cmake . --preset=release -DCPM_HPACK_SOURCE=/path/to/hpack
+CPMAddPackage(
+  NAME HPACK
+  GITHUB_REPOSITORY kelbon/hpack
+  GIT_TAG fixx
+)
+
+# reference implementation (nghttp2_hd_* API), only library
+CPMAddPackage(
+  NAME NGHTTP2
+  GITHUB_REPOSITORY nghttp2/nghttp2
+  GIT_TAG v1.66.0
+  OPTIONS "ENABLE_LIB_ONLY ON"
+          "BUILD_SHARED_LIBS OFF"
+          "BUILD_STATIC_LIBS ON"
+          "ENABLE_DOC OFF"
+          "BUILD_TESTING OFF"
 )
 
 find_package(Threads REQUIRED)
